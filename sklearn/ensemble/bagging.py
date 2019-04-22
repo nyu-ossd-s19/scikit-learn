@@ -550,6 +550,21 @@ class BaggingClassifier(BaseBagging, ClassifierMixin):
 
     .. [4] G. Louppe and P. Geurts, "Ensembles on Random Patches", Machine
            Learning and Knowledge Discovery in Databases, 346-361, 2012.
+
+    Examples
+    --------
+    >>> from sklearn.datasets import load_iris
+    >>> from sklearn.model_selection import cross_val_score
+    >>> from sklearn.tree import DecisionTreeClassifier
+    >>> from sklearn.ensemble import BaggingClassifier
+    >>> decision_tree = DecisionTreeClassifier(random_state=0)
+    >>> iris = load_iris()
+    >>> clf = BaggingClassifier(decision_tree, n_estimators=20, random_state=0)
+    >>> cross_val_score(clf, iris.data, iris.target, cv=10)
+    ...
+    ...
+    array([1.        , 0.93333333, 1.        , 0.93333333, 0.93333333,
+           0.93333333, 0.93333333, 0.93333333, 1.        , 1.        ])
     """
     def __init__(self,
                  base_estimator=None,
